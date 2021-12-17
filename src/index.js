@@ -40,12 +40,16 @@ function onSearch(e) {
     loadMoreBtn.show();
 }
 
-function fetchImgs() {
-    loadMoreBtn.disable();
-    imgApiService.fetchImgs().then(items => {
-        appendImgsMarkup(items);
-        loadMoreBtn.enable();
-    });
+async function fetchImgs() {
+    try {
+        loadMoreBtn.disable();
+        imgApiService.fetchImgs().then(items => {
+            appendImgsMarkup(items);
+            loadMoreBtn.enable();
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
 function appendImgsMarkup(items) {
